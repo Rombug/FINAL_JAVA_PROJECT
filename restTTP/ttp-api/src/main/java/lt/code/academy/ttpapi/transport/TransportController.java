@@ -34,6 +34,18 @@ public class TransportController {
     @ResponseStatus(HttpStatus.CREATED)
     public void createTransport(@RequestBody Transport transport){
         transportService.createTransport(transport);
+    }
 
+    @PutMapping(value = TRANSPORT, consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.ACCEPTED)
+    public void updateTransport(@RequestBody Transport transport, @PathVariable(transportId) UUID id){
+        transport.setId(id);
+        transportService.updateTransport(transport);
+    }
+
+    @DeleteMapping(TRANSPORT)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteTransport(@PathVariable(transportId) UUID id){
+        transportService.deleteTransport(id);
     }
 }
