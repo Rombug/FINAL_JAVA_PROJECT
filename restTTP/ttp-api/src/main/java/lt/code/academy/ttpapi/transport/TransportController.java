@@ -4,11 +4,9 @@ import static lt.code.academy.ttpapi.Endpoint.*;
 
 import lt.code.academy.ttpapi.transport.dto.Transport;
 import lt.code.academy.ttpapi.transport.service.TransportService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
@@ -30,5 +28,12 @@ public class TransportController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Transport> getTransports(){
         return transportService.getTransports();
+    }
+
+    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createTransport(@RequestBody Transport transport){
+        transportService.createTransport(transport);
+
     }
 }
