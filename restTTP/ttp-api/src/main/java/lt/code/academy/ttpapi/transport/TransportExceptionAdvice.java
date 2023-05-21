@@ -14,4 +14,10 @@ public class TransportExceptionAdvice {
     public ExceptionResponse handleTransportNotExistException(TransportNotExistRuntimeException ex){
         return new ExceptionResponse(String.format("Transport does not exist with this %s id", ex.getId()), HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler(Exception.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ExceptionResponse handleException(Exception e) {
+        return new ExceptionResponse(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
 }
