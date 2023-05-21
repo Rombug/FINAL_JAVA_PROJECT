@@ -21,7 +21,7 @@ public class TransportService {
         transportRepository.save(TransportEntity.convert(transport));
     }
 
-    public List<Transport> getTransport(){
+    public List<Transport> getTransports(){
         return transportRepository.findAll()
                 .stream()
                 .map(Transport::convert)
