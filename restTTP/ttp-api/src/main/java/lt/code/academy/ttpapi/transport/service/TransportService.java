@@ -42,4 +42,11 @@ public class TransportService {
         transportRepository.deleteById(id);
     }
 
+    public List<Transport> search(String text) {
+        return transportRepository.findAllByOwnerOrRegistrationCountry(text, text)
+                .stream()
+                .map(Transport::convert)
+                .toList();
+    }
+
 }

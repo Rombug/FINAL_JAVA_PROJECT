@@ -21,23 +21,23 @@ public class TransportEntity {
     @Column(updatable = false)
     private UUID id;
     @Column(nullable = false, length = 10)
-    private String registration_number;
+    private String registrationNumber;
     @Column(nullable = false, length = 100)
     private String owner;
     @Column(nullable = false, length = 50)
-    private String registration_country;
+    private String registrationCountry;
     @Column(nullable = false, length = 50)
-    private String car_number;
+    private String carNumber;
     @Column(nullable = false, length = 200)
     private String comment;
 
     public static TransportEntity convert(Transport transport){
         return new TransportEntity(
           transport.getId(),
-                transport.getRegistration_number(),
+                transport.getRegistrationNumber(),
                 transport.getOwner(),
-                transport.getRegistration_country(),
-                transport.getCar_number(),
+                transport.getRegistrationCountry(),
+                transport.getCarNumber(),
                 transport.getComment()
         );
     }

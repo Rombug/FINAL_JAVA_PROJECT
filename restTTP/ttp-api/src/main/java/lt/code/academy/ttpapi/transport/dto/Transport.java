@@ -19,16 +19,16 @@ public class Transport {
     private UUID id;
     @NotBlank
     @Size(min = 5, max = 10)
-    private String registration_number;
+    private String registrationNumber;
     @NotBlank
     @Size(min = 5, max = 100)
     private String owner;
     @NotBlank
     @Size(min = 3, max = 50)
-    private String registration_country;
+    private String registrationCountry;
     @NotBlank
     @Size(min = 3, max = 50)
-    private String car_number;
+    private String carNumber;
     @NotBlank
     @Size(min = 5, max = 200)
     private String comment;
@@ -36,10 +36,10 @@ public class Transport {
     public static Transport convert(TransportEntity entity){
         return new Transport(
           entity.getId(),
-                entity.getRegistration_number(),
+                entity.getRegistrationNumber(),
                 entity.getOwner(),
-                entity.getRegistration_country(),
-                entity.getCar_number(),
+                entity.getRegistrationCountry(),
+                entity.getCarNumber(),
                 entity.getComment()
         );
     }

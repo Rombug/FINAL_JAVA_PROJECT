@@ -48,4 +48,9 @@ public class TransportController {
     public void deleteTransport(@PathVariable(transportId) UUID id){
         transportService.deleteTransport(id);
     }
+
+    @GetMapping(value = SEARCH, produces = MediaType.APPLICATION_JSON_VALUE)
+    List<Transport> search(@RequestParam String query){
+        return transportService.search(query);
+    }
 }
