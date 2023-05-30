@@ -1,4 +1,5 @@
 import {AppBar, Button, Link, Toolbar, Typography} from "@mui/material";
+import {NavLink} from "react-router-dom";
 
 const Header = () => {
 
@@ -10,33 +11,41 @@ const Header = () => {
             sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
         >
             <Toolbar sx={{ flexWrap: 'wrap' }}>
-                <Typography variant="h6" color="inherit" noWrap sx={{ flexGrow: 1 }}>
-                    Company name
+                <Typography variant="h6"
+                            color="inherit"
+                            noWrap
+                            to="/"
+                            component={NavLink}
+                            sx={{ flexGrow: 1, textDecoration: 'unset' }}>
+                    TTP
                 </Typography>
                 <nav>
                     <Link
                         variant="button"
                         color="text.primary"
-                        href="#"
+                        to="/"
+                        component={NavLink}
                         sx={{ my: 1, mx: 1.5 }}
                     >
-                        Features
+                        ECV list
                     </Link>
                     <Link
                         variant="button"
                         color="text.primary"
-                        href="#"
+                        to="/transport/registration"
+                        component={NavLink}
                         sx={{ my: 1, mx: 1.5 }}
                     >
-                        Enterprise
+                        Register ECV
                     </Link>
                     <Link
                         variant="button"
                         color="text.primary"
-                        href="#"
+                        to="/users/registration"
+                        component={NavLink}
                         sx={{ my: 1, mx: 1.5 }}
                     >
-                        Support
+                        Create user
                     </Link>
                 </nav>
                 <Button href="#" variant="outlined" color="success" sx={{ my: 1, mx: 1.5 }}>

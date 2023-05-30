@@ -1,5 +1,8 @@
 import {Container} from "@mui/material";
 import Transport from "../forms/Transport";
+import {Route, Routes} from "react-router-dom";
+import User from "../forms/User";
+import Vehicles from "../page/Vehicles";
 
 const Content = () => {
 
@@ -11,7 +14,13 @@ const Content = () => {
             minHeight: 'calc(100vh - 157px)',
             mt:3
         }}>
-            <Transport/>
+
+            <Routes>
+                <Route path="/" element={<Vehicles/>}/>
+                <Route path="/transport/registration" element={<Transport/>}/>
+                <Route path="/users/registration" element={<User/>}/>
+            </Routes>
+
         </Container>
         </>
     );

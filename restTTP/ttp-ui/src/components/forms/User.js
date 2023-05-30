@@ -51,7 +51,7 @@ const User = () => (
         {props => (
             <Form>
                 <Stack spacing={1} direction="column">
-                    <Typography variant="h5">Create user:</Typography>
+                    <Typography variant="h6" align="center">Create new user</Typography>
                     <FormTextInput error={props.touched.username && !!props.errors.username}
                                    name="username"
                                    label="User name"/>
@@ -72,8 +72,8 @@ const User = () => (
                 </Stack>
                 <Typography sx={{textAlign: 'right', mt: 2}}>
                     {
-                        props.isSubmitting ? <CircularProgress/> :
-                            <Button variant="outlined" type="submit">Save user</Button>
+                        props.isSubmitting ? <CircularProgress color="success"/> :
+                            <Button variant="outlined" type="submit" color="success">Create</Button>
                     }
                 </Typography>
             </Form>

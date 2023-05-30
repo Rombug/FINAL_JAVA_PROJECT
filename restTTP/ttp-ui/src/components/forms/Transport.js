@@ -70,7 +70,8 @@ const Transport = () => (
 
                         <Typography sx={{textAlign: 'right', mt: 2}}>
                             {
-                                props.isSubmitting ? <CircularProgress color="success"/> : <Button variant="outlined" type="submit" color="success">Register</Button>
+                                props.isSubmitting ? <CircularProgress color="success"/> :
+                                    <Button variant="outlined" type="submit" color="success">Register</Button>
                             }
                         </Typography>
                     </Form>
