@@ -54,20 +54,22 @@ const Vehicles = () => {
                             <TableHead>
                                 <TableRow>
                                     <StyledTableCell>Owner</StyledTableCell>
-                                    <StyledTableCell align="right">RegistrationCountry</StyledTableCell>
-                                    <StyledTableCell align="right">RegistrationNumber</StyledTableCell>
-                                    <StyledTableCell align="right">CarNumber</StyledTableCell>
-                                    <StyledTableCell align="right">Comment</StyledTableCell>
+                                    <StyledTableCell align="left">Registration Country</StyledTableCell>
+                                    <StyledTableCell align="left">Vehicle Model</StyledTableCell>
+                                    <StyledTableCell align="left">Registration Number</StyledTableCell>
+                                    <StyledTableCell align="left">Car Number</StyledTableCell>
+                                    <StyledTableCell align="left">Comment</StyledTableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
                                 {vehicles.map((vehicle) => (
                                     <StyledTableRow key={vehicle.id}>
                                         <StyledTableCell component="th" scope="row">{vehicle.owner}</StyledTableCell>
-                                        <StyledTableCell align="right">{vehicle.registrationCountry}</StyledTableCell>
-                                        <StyledTableCell align="right">{vehicle.registrationNumber}</StyledTableCell>
-                                        <StyledTableCell align="right">{vehicle.carNumber}</StyledTableCell>
-                                        <StyledTableCell align="right">{vehicle.comment}</StyledTableCell>
+                                        <StyledTableCell align="left">{vehicle.registrationCountry}</StyledTableCell>
+                                        <StyledTableCell align="left">{vehicle.vehicleModel}</StyledTableCell>
+                                        <StyledTableCell align="left">{vehicle.registrationNumber}</StyledTableCell>
+                                        <StyledTableCell align="left">{vehicle.carNumber}</StyledTableCell>
+                                        <StyledTableCell align="left">{vehicle.comment}</StyledTableCell>
                                     </StyledTableRow>
                                 ))}
                             </TableBody>

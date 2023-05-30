@@ -11,6 +11,8 @@ const transportValidationSchema = Yup.object().shape(
             .required('Registration number is required'),
         owner: Yup.string()
             .required('Owner is required'),
+        vehicleModel: Yup.string()
+            .required('Vehicle model is required'),
         registrationCountry: Yup.string()
             .required('Registration country is required'),
         carNumber: Yup.string()
@@ -27,6 +29,7 @@ const Transport = () => (
         initialValues={{
             registrationNumber: '',
             owner: '',
+            vehicleModel: '',
             registrationCountry: '',
             carNumber: '',
             comment: ''
@@ -47,6 +50,10 @@ const Transport = () => (
                             <FormTransportTextInput error={props.touched.owner && !!props.errors.owner}
                                             name="owner"
                                             label="Owner"/>
+
+                            <FormTransportTextInput error={props.touched.vehicleModel && !!props.errors.vehicleModel}
+                                            name="vehicleModel"
+                                            label="Vehicle Model"/>
 
                             <FormTransportTextInput error={props.touched.registrationCountry && !!props.errors.registrationCountry}
                                             name="registrationCountry"

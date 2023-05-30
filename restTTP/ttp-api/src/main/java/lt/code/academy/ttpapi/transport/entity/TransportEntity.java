@@ -1,6 +1,8 @@
 package lt.code.academy.ttpapi.transport.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,6 +32,8 @@ public class TransportEntity {
     private String carNumber;
     @Column(nullable = false, length = 200)
     private String comment;
+    @Column(nullable = false, length = 20)
+    private String vehicleModel;
 
     public static TransportEntity convert(Transport transport){
         return new TransportEntity(
@@ -38,7 +42,8 @@ public class TransportEntity {
                 transport.getOwner(),
                 transport.getRegistrationCountry(),
                 transport.getCarNumber(),
-                transport.getComment()
+                transport.getComment(),
+                transport.getVehicleModel()
         );
     }
 }

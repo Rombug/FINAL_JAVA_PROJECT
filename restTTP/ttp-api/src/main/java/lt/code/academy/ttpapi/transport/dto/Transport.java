@@ -32,6 +32,9 @@ public class Transport {
     @NotBlank
     @Size(min = 5, max = 200)
     private String comment;
+    @NotBlank
+    @Size(min = 2, max = 20)
+    private String vehicleModel;
 
     public static Transport convert(TransportEntity entity){
         return new Transport(
@@ -40,7 +43,8 @@ public class Transport {
                 entity.getOwner(),
                 entity.getRegistrationCountry(),
                 entity.getCarNumber(),
-                entity.getComment()
+                entity.getComment(),
+                entity.getVehicleModel()
         );
     }
 }
