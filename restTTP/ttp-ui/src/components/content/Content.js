@@ -1,4 +1,5 @@
 import {Container} from "@mui/material";
+import Transport from "../forms/Transport";
 
 const Content = () => {
 
@@ -9,7 +10,7 @@ const Content = () => {
             flexDirection: 'column',
             minHeight: 'calc(100vh - 157px)',
         }}>
-           cia kazkas bus
+            <Transport/>
         </Container>
         </>
     );
