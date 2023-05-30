@@ -17,8 +17,7 @@ const transportValidationSchema = Yup.object().shape(
             .required('Car number is required'),
         comment: Yup.string()
             .min(10, 'Comment must be more then 10 symbols')
-            .max(200, 'Comment must be less then 200 symbols')
-            .required('Comment is required'),
+            .max(200, 'Comment must be less then 200 symbols'),
     }
 )
 
@@ -44,32 +43,34 @@ const Transport = () => (
 
                     <Form>
                         <Stack spacing={2} direction="column">
+                            <Typography variant="h6" align="center">Register empty cargo vehicle</Typography>
+                            <FormTransportTextInput error={props.touched.owner && !!props.errors.owner}
+                                            name="owner"
+                                            label="Owner"/>
 
-                        <FormTransportTextInput error={props.touched.registrationNumber && !!props.errors.registrationNumber}
-                                       name="registrationNumber"
-                                       label="Registration Number"/>
+                            <FormTransportTextInput error={props.touched.registrationCountry && !!props.errors.registrationCountry}
+                                            name="registrationCountry"
+                                            label="Registration Country"/>
 
-                        <FormTransportTextInput error={props.touched.owner && !!props.errors.owner}
-                                        name="owner"
-                                        label="Owner"/>
+                            <FormTransportTextInput error={props.touched.registrationNumber && !!props.errors.registrationNumber}
+                                                    name="registrationNumber"
+                                                    label="Registration Number"/>
 
-                        <FormTransportTextInput error={props.touched.registrationCountry && !!props.errors.registrationCountry}
-                                        name="registrationCountry"
-                                        label="Registration Country"/>
+                            <FormTransportTextInput error={props.touched.carNumber && !!props.errors.carNumber}
+                                            name="carNumber"
+                                            label="Car Number"/>
 
-                        <FormTransportTextInput error={props.touched.carNumber && !!props.errors.carNumber}
-                                        name="carNumber"
-                                        label="Car Number"/>
-
-                        <FormTransportTextInput error={props.touched.comment && !!props.errors.comment}
-                                        name="comment"
-                                        label="Comment"/>
+                            <FormTransportTextInput error={props.touched.comment && !!props.errors.comment}
+                                            name="comment"
+                                            label="Comment"
+                                            rows={4}
+                                            multiline/>
 
                         </Stack>
 
                         <Typography sx={{textAlign: 'right', mt: 2}}>
                             {
-                                props.isSubmitting ? <CircularProgress color="success"/> : <Button variant="outlined" type="submit">Save</Button>
+                                props.isSubmitting ? <CircularProgress color="success"/> : <Button variant="outlined" type="submit" color="success">Register</Button>
                             }
                         </Typography>
                     </Form>
