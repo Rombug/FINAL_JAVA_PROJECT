@@ -3,6 +3,7 @@ import Transport from "../forms/Transport";
 import {Route, Routes} from "react-router-dom";
 import User from "../forms/User";
 import Vehicles from "../page/Vehicles";
+import UpdateTransport from "../forms/UpdateTransport";
 
 const Content = () => {
 
@@ -19,6 +20,7 @@ const Content = () => {
                 <Route path="/" element={<Vehicles/>}/>
                 <Route path="/transport/registration" element={<Transport/>}/>
                 <Route path="/users/registration" element={<User/>}/>
+                <Route path="/transport/:transportId/update" element={<UpdateTransport/>}/>
             </Routes>
 
         </Container>
