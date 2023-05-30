@@ -1,5 +1,6 @@
-import {AppBar, Button, Link, Toolbar, Typography} from "@mui/material";
+import {AppBar, Button, Toolbar, Typography} from "@mui/material";
 import {NavLink} from "react-router-dom";
+import HeaderItem from "./HeaderItem";
 
 const Header = () => {
 
@@ -20,33 +21,9 @@ const Header = () => {
                     TTP
                 </Typography>
                 <nav>
-                    <Link
-                        variant="button"
-                        color="text.primary"
-                        to="/"
-                        component={NavLink}
-                        sx={{ my: 1, mx: 1.5 }}
-                    >
-                        ECV list
-                    </Link>
-                    <Link
-                        variant="button"
-                        color="text.primary"
-                        to="/transport/registration"
-                        component={NavLink}
-                        sx={{ my: 1, mx: 1.5 }}
-                    >
-                        Register ECV
-                    </Link>
-                    <Link
-                        variant="button"
-                        color="text.primary"
-                        to="/users/registration"
-                        component={NavLink}
-                        sx={{ my: 1, mx: 1.5 }}
-                    >
-                        Create user
-                    </Link>
+                    <HeaderItem path="/" name="ECV list"/>
+                    <HeaderItem path="/transport/registration" name="Register ECV"/>
+                    <HeaderItem path="/users/registration" name="Create user"/>
                 </nav>
                 <Button href="#" variant="outlined" color="success" sx={{ my: 1, mx: 1.5 }}>
                     Login
