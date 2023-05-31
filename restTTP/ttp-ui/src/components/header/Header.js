@@ -1,4 +1,4 @@
-import {AppBar, Button, Toolbar, Typography} from "@mui/material";
+import {AppBar, Button, ImageList, ImageListItem, Toolbar, Typography} from "@mui/material";
 import {NavLink} from "react-router-dom";
 import HeaderItem from "./HeaderItem";
 
@@ -18,7 +18,12 @@ const Header = () => {
                             to="/"
                             component={NavLink}
                             sx={{ flexGrow: 1, textDecoration: 'unset' }}>
-                    TTP
+
+                        <ImageListItem>
+                            <img src="https://sports.cbsimg.net/fly/images/nfl/logos/team/414.svg" alt="" style={{ width: '50px', height: 'auto' }} />
+                        </ImageListItem>
+                    {/*TTP*/}
+
                 </Typography>
                 <nav>
                     <HeaderItem path="/" name="ECV list"/>

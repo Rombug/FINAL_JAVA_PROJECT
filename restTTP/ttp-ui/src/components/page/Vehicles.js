@@ -10,6 +10,7 @@ import {
     TableHead,
     TableRow
 } from "@mui/material";
+import {NavLink} from "react-router-dom";
 
 
 
@@ -43,7 +44,7 @@ const Vehicles = () => {
             .then(({data}) => setVehicles(data))
             .catch((error) => console.log('error', error))
             .finally(() => setLoading(false));
-    })
+    }, [])
     return (
 
         <>
@@ -64,7 +65,11 @@ const Vehicles = () => {
                             <TableBody>
                                 {vehicles.map((vehicle) => (
                                     <StyledTableRow key={vehicle.id}>
-                                        <StyledTableCell component="th" scope="row">{vehicle.owner}</StyledTableCell>
+                                        <StyledTableCell component="th" scope="row">
+                                            <NavLink to={`/transport/${vehicle.id}`}>
+                                                {vehicle.owner}
+                                            </NavLink>
+                                        </StyledTableCell>
                                         <StyledTableCell >{vehicle.registrationCountry}</StyledTableCell>
                                         <StyledTableCell >{vehicle.vehicleModel}</StyledTableCell>
                                         <StyledTableCell >{vehicle.registrationNumber}</StyledTableCell>
