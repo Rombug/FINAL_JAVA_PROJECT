@@ -65,16 +65,53 @@ const Vehicles = () => {
                             <TableBody>
                                 {vehicles.map((vehicle) => (
                                     <StyledTableRow key={vehicle.id}>
-                                        <StyledTableCell component="th" scope="row">
+                                        <StyledTableCell sx={{
+                                            maxWidth: 100,
+                                            overflow: 'hidden',
+                                            textOverflow: 'ellipsis',
+                                            whiteSpace: 'nowrap'}}
+                                                         component="th"
+                                                         scope="row">
                                             <NavLink to={`/transport/${vehicle.id}`}>
                                                 {vehicle.owner}
                                             </NavLink>
                                         </StyledTableCell>
-                                        <StyledTableCell >{vehicle.registrationCountry}</StyledTableCell>
-                                        <StyledTableCell >{vehicle.vehicleModel}</StyledTableCell>
-                                        <StyledTableCell >{vehicle.registrationNumber}</StyledTableCell>
-                                        <StyledTableCell >{vehicle.carNumber}</StyledTableCell>
-                                        <StyledTableCell >{vehicle.comment}</StyledTableCell>
+                                        <StyledTableCell sx={{
+                                            maxWidth: 100,
+                                            overflow: 'hidden',
+                                            textOverflow: 'ellipsis',
+                                            whiteSpace: 'nowrap'
+                                        }}>
+                                            {vehicle.registrationCountry}
+                                        </StyledTableCell>
+                                        <StyledTableCell sx={{
+                                            maxWidth: 100,
+                                            overflow: 'hidden',
+                                            textOverflow: 'ellipsis',
+                                            whiteSpace: 'nowrap'}}>
+                                            {vehicle.vehicleModel}
+                                        </StyledTableCell>
+                                        <StyledTableCell sx={{
+                                            maxWidth: 100,
+                                            overflow: 'hidden',
+                                            textOverflow: 'ellipsis',
+                                            whiteSpace: 'nowrap'}}>
+                                            {vehicle.registrationNumber}
+                                        </StyledTableCell>
+                                        <StyledTableCell sx={{
+                                            maxWidth: 100,
+                                            overflow: 'hidden',
+                                            textOverflow: 'ellipsis',
+                                            whiteSpace: 'nowrap'}}>
+                                            {vehicle.carNumber}
+                                        </StyledTableCell>
+                                        <StyledTableCell sx={{
+                                            maxWidth: 100,
+                                            overflow: 'hidden',
+                                            textOverflow: 'ellipsis',
+                                            whiteSpace: 'nowrap'}}>
+                                            {vehicle.comment}
+                                        </StyledTableCell>
                                     </StyledTableRow>
                                 ))}
                             </TableBody>

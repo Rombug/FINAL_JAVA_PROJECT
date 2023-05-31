@@ -2,8 +2,9 @@ import {Form, Formik} from "formik";
 import {Alert, Button, CircularProgress, Stack, Typography} from "@mui/material";
 import  * as Yup from 'yup';
 import FormTransportTextInput from "./FormTransportTextInput";
-import {saveVehicle} from "../api/transportApi";
-import {useState} from "react";
+import {getVehicleById, saveVehicle} from "../api/transportApi";
+import {useEffect, useState} from "react";
+import {useParams} from "react-router-dom";
 
 const transportValidationSchema = Yup.object().shape(
     {
@@ -28,6 +29,22 @@ const transportValidationSchema = Yup.object().shape(
 const Transport = () => {
 
     const [notification, setNotification] = useState({isVisible: false});
+    const {transportId} = useParams();
+    const [vehicle, setVehicle] = useState({});
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        if (!transportId){
+            return;
+        }
+
+
+
+        getVehicleById(transportId)
+            .then(({data}) => setVehicle(data))
+            .catch((error) => console.log(error))
+            .finally(() => setLoading(false));
+    }, []);
 
     const onRegisterVehicle = (values, helper) => {
         saveVehicle(values)
@@ -110,3 +127,6 @@ const Transport = () => {
 }
 
 export default Transport;
+export {
+    transportValidationSchema
+}

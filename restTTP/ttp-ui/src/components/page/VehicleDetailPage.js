@@ -1,16 +1,8 @@
-import {useParams} from "react-router-dom";
+import {NavLink, useParams} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import {getVehicleById} from "../api/transportApi";
-import {CircularProgress, Paper, Stack, styled, Typography} from "@mui/material";
+import {Button, CircularProgress, Grid, Paper, Typography} from "@mui/material";
 
-const Item = styled(Paper)(({ theme }) => ({
-    backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-    ...theme.typography.body2,
-    padding: theme.spacing(1),
-    textAlign: 'center',
-    color: theme.palette.text.secondary,
-    flexGrow: 1,
-}));
 
 const VehicleDetailPage = () => {
     const {transportId} = useParams();
@@ -30,20 +22,55 @@ const VehicleDetailPage = () => {
             {
                 loading ? <CircularProgress color="success"/> :
                     <div>
-                            <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap">
-                                <Typography>Owner:</Typography>
-                                <Item>{vehicle.owner}</Item>
-                                <Typography>Vehicle model:</Typography>
-                                <Item>{vehicle.vehicleModel}</Item>
-                                <Typography>Registration country:</Typography>
-                                <Item>{vehicle.registrationCountry}</Item>
-                                <Typography>Car number:</Typography>
-                                <Item>{vehicle.carNumber}</Item>
-                                <Typography>Registration number:</Typography>
-                                <Item>{vehicle.registrationNumber}</Item>
-                                <Typography>Comment:</Typography>
-                                <Item>{vehicle.comment}</Item>
-                            </Stack>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12} sm={6} md={4}>
+                                <Paper elevation={1} style={{ padding: '1rem' }}>
+                                    <Typography variant="h6">Owner</Typography>
+                                    <Typography>{vehicle.owner}</Typography>
+                                </Paper>
+                            </Grid>
+
+                            <Grid item xs={12} sm={6} md={4}>
+                                <Paper elevation={1} style={{ padding: '1rem' }}>
+                                    <Typography variant="h6">Vehicle Model</Typography>
+                                    <Typography>{vehicle.vehicleModel}</Typography>
+                                </Paper>
+                            </Grid>
+
+                            <Grid item xs={12} sm={6} md={4}>
+                                <Paper elevation={1} style={{ padding: '1rem' }}>
+                                    <Typography variant="h6">Registration Country</Typography>
+                                    <Typography>{vehicle.registrationCountry}</Typography>
+                                </Paper>
+                            </Grid>
+
+                            <Grid item xs={12} sm={6} md={4}>
+                                <Paper elevation={1} style={{ padding: '1rem' }}>
+                                    <Typography variant="h6">Car Number</Typography>
+                                    <Typography>{vehicle.carNumber}</Typography>
+                                </Paper>
+                            </Grid>
+
+                            <Grid item xs={12} sm={6} md={4}>
+                                <Paper elevation={1} style={{ padding: '1rem' }}>
+                                    <Typography variant="h6">Registration Number</Typography>
+                                    <Typography>{vehicle.registrationNumber}</Typography>
+                                </Paper>
+                            </Grid>
+
+                            <Grid item xs={12}>
+                                <Paper elevation={1} style={{ padding: '1rem' }}>
+                                    <Typography variant="h6">Comment</Typography>
+                                    <Typography>{vehicle.comment}</Typography>
+                                </Paper>
+                            </Grid>
+                        </Grid>
+                        <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '20px' }}>
+                            <Button variant="outlined"
+                                    to={`/transport/${vehicle.id}/update`}
+                                    component={NavLink}
+                                    color="success">Edit</Button>
+                        </div>
                     </div>
             }
 
