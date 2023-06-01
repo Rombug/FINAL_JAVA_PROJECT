@@ -2,6 +2,7 @@ import {NavLink, useParams} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import {getVehicleById} from "../api/transportApi";
 import {Button, CircularProgress, Grid, Paper, Typography} from "@mui/material";
+import DeleteVehicle from "../forms/DeleteVehicle";
 
 
 const VehicleDetailPage = () => {
@@ -70,6 +71,7 @@ const VehicleDetailPage = () => {
                                     to={`/transport/${vehicle.id}/update`}
                                     component={NavLink}
                                     color="success">Edit</Button>
+                            <DeleteVehicle vehicleId={vehicle.id}/>
                         </div>
                     </div>
             }

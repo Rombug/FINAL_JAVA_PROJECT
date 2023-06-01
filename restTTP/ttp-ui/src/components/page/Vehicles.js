@@ -11,6 +11,7 @@ import {
     TableRow
 } from "@mui/material";
 import {NavLink} from "react-router-dom";
+import DeleteVehicle from "../forms/DeleteVehicle";
 
 
 
@@ -46,6 +47,12 @@ const Vehicles = () => {
             .catch((error) => console.log('error', error))
             .finally(() => setLoading(false));
     }, [])
+
+    const removeVehicleFromTable = (vehicleId) => {
+        const filteredVehicles = vehicles.filter(v => v.id !== vehicleId);
+        setVehicles(filteredVehicles);
+    }
+
     return (
 
         <>
@@ -61,6 +68,7 @@ const Vehicles = () => {
                                     <StyledTableCell >Registration Number</StyledTableCell>
                                     <StyledTableCell >Car Number</StyledTableCell>
                                     <StyledTableCell >Comment</StyledTableCell>
+                                    <StyledTableCell ></StyledTableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
@@ -112,7 +120,14 @@ const Vehicles = () => {
                                             textOverflow: 'ellipsis',
                                             whiteSpace: 'nowrap'}}>
                                             {vehicle.comment}
+                                        </StyledTableCell><StyledTableCell sx={{
+                                            maxWidth: 100,
+                                            overflow: 'hidden',
+                                            textOverflow: 'ellipsis',
+                                            whiteSpace: 'nowrap'}}>
+                                            <DeleteVehicle key={vehicle.id} vehicleId={vehicle.id} removeVehicleFromTable={removeVehicleFromTable}/>
                                         </StyledTableCell>
+
                                     </StyledTableRow>
                                 ))}
                             </TableBody>
