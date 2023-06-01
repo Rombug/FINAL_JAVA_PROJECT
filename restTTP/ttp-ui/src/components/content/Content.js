@@ -18,9 +18,9 @@ const Content = () => {
 
             <Routes>
                 <Route path="/" element={<Vehicles/>}/>
-                <Route path="/transport/registration" element={<Transport/>}/>
+                <Route path="/transport/registration" element={<Transport key="registration"/>}/>
                 <Route path="/users/registration" element={<User/>}/>
-                <Route path="/transport/:transportId/update" element={<Transport/>}/>
+                <Route path="/transport/:transportId/update" element={<Transport key="update"/>}/>
                 <Route path="/transport/:transportId" element={<VehicleDetailPage/>}/>
             </Routes>
 

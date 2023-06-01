@@ -2,9 +2,9 @@ import {Form, Formik} from "formik";
 import {Alert, Button, CircularProgress, Stack, Typography} from "@mui/material";
 import  * as Yup from 'yup';
 import FormTransportTextInput from "./FormTransportTextInput";
-import {getVehicleById, saveVehicle} from "../api/transportApi";
+import {editVehicle, getVehicleById, saveVehicle} from "../api/transportApi";
 import {useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 
 const transportValidationSchema = Yup.object().shape(
     {
@@ -30,21 +30,44 @@ const Transport = () => {
 
     const [notification, setNotification] = useState({isVisible: false});
     const {transportId} = useParams();
-    const [vehicle, setVehicle] = useState({});
+    const [vehicle, setVehicle] = useState({
+        registrationNumber: '',
+        owner: '',
+        vehicleModel: '',
+        registrationCountry: '',
+        carNumber: '',
+        comment: ''
+
+    });
     const [loading, setLoading] = useState(true);
+    const navigation = useNavigate();
 
     useEffect(() => {
         if (!transportId){
+            setLoading(false);
             return;
         }
-
-
 
         getVehicleById(transportId)
             .then(({data}) => setVehicle(data))
             .catch((error) => console.log(error))
             .finally(() => setLoading(false));
     }, []);
+    
+    const onFormSubmit = (values, helper) => {
+      if (transportId){
+          onVehicleUpdate(values, helper);
+          return;
+      }
+      onRegisterVehicle(values, helper)
+    }
+
+    const onVehicleUpdate = (values, helper) => {
+        editVehicle(values, transportId)
+            .then(() => navigation(`/transport/${transportId}`))
+            .catch((error) => setNotification({isVisible: true, message: 'Sorry, cannot be updated', severity: 'error'}))
+            .finally(() => helper.setSubmitting(false));
+    }
 
     const onRegisterVehicle = (values, helper) => {
         saveVehicle(values)
@@ -60,73 +83,69 @@ const Transport = () => {
     }
 
     return (
-    <Formik
-        initialValues={{
-            registrationNumber: '',
-            owner: '',
-            vehicleModel: '',
-            registrationCountry: '',
-            carNumber: '',
-            comment: ''
+        <>
+        {
+            loading ? <CircularProgress color="success"/> :
 
-        }}
+                <Formik
+                    initialValues={vehicle}
 
-        onSubmit={onRegisterVehicle}
+                    onSubmit={onFormSubmit}
 
-        validationSchema={transportValidationSchema}
-    >
+                    validationSchema={transportValidationSchema}
+                >
 
-        {props => (
+                    {props => (
 
-            <Form>
-                <Stack spacing={2} direction="column">
-                    {notification.isVisible && <Alert severity={notification.severity} align="center" sx={{ width: '33%', margin: '0 auto' }}>{notification.message}</Alert>}
+                        <Form>
+                            <Stack spacing={2} direction="column">
+                                {notification.isVisible && <Alert severity={notification.severity}
+                                                                  align="center"
+                                                                  sx={{ width: '33%', margin: '0 auto' }}>{notification.message}</Alert>}
 
-                    <Typography variant="h6" align="center">Register empty cargo vehicle</Typography>
-                    <FormTransportTextInput error={props.touched.owner && !!props.errors.owner}
-                                            name="owner"
-                                            label="Owner"/>
+                                <Typography variant="h6" align="center">{transportId ? 'Edit empty cargo vehicle' : 'Register empty cargo vehicle'}</Typography>
+                                <FormTransportTextInput error={props.touched.owner && !!props.errors.owner}
+                                                        name="owner"
+                                                        label="Owner"/>
 
-                    <FormTransportTextInput error={props.touched.vehicleModel && !!props.errors.vehicleModel}
-                                            name="vehicleModel"
-                                            label="Vehicle Model"/>
+                                <FormTransportTextInput error={props.touched.vehicleModel && !!props.errors.vehicleModel}
+                                                        name="vehicleModel"
+                                                        label="Vehicle Model"/>
 
-                    <FormTransportTextInput
-                        error={props.touched.registrationCountry && !!props.errors.registrationCountry}
-                        name="registrationCountry"
-                        label="Registration Country"/>
+                                <FormTransportTextInput
+                                    error={props.touched.registrationCountry && !!props.errors.registrationCountry}
+                                    name="registrationCountry"
+                                    label="Registration Country"/>
 
-                    <FormTransportTextInput
-                        error={props.touched.registrationNumber && !!props.errors.registrationNumber}
-                        name="registrationNumber"
-                        label="Registration Number"/>
+                                <FormTransportTextInput
+                                    error={props.touched.registrationNumber && !!props.errors.registrationNumber}
+                                    name="registrationNumber"
+                                    label="Registration Number"/>
 
-                    <FormTransportTextInput error={props.touched.carNumber && !!props.errors.carNumber}
-                                            name="carNumber"
-                                            label="Car Number"/>
+                                <FormTransportTextInput error={props.touched.carNumber && !!props.errors.carNumber}
+                                                        name="carNumber"
+                                                        label="Car Number"/>
 
-                    <FormTransportTextInput error={props.touched.comment && !!props.errors.comment}
-                                            name="comment"
-                                            label="Comment"
-                                            rows={4}
-                                            multiline/>
+                                <FormTransportTextInput error={props.touched.comment && !!props.errors.comment}
+                                                        name="comment"
+                                                        label="Comment"
+                                                        rows={4}
+                                                        multiline/>
 
-                </Stack>
+                            </Stack>
 
-                <Typography sx={{textAlign: 'right', mt: 2}}>
-                    {
-                        props.isSubmitting ? <CircularProgress color="success"/> :
-                            <Button variant="outlined" type="submit" color="success">Register</Button>
-                    }
-                </Typography>
-            </Form>
-        )}
-    </Formik>
-
+                            <Typography sx={{textAlign: 'right', mt: 2}}>
+                                {
+                                    props.isSubmitting ? <CircularProgress color="success"/> :
+                                        <Button variant="outlined" type="submit" color="success">{transportId ? 'Update' : 'Register'}</Button>
+                                }
+                            </Typography>
+                        </Form>
+                    )}
+                </Formik>
+        }
+        </>
     )
 }
 
 export default Transport;
-export {
-    transportValidationSchema
-}

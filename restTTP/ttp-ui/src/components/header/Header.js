@@ -1,4 +1,4 @@
-import {AppBar, Button, ImageList, ImageListItem, Toolbar, Typography} from "@mui/material";
+import {AppBar, Button, ImageListItem, Toolbar, Typography} from "@mui/material";
 import {NavLink} from "react-router-dom";
 import HeaderItem from "./HeaderItem";
 
