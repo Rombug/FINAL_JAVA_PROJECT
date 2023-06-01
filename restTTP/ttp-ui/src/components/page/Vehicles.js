@@ -16,7 +16,7 @@ import {NavLink} from "react-router-dom";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
-        backgroundColor: theme.palette.common.black,
+        backgroundColor: 'green',
         color: theme.palette.common.white,
     },
     [`&.${tableCellClasses.body}`]: {
@@ -32,6 +32,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     '&:last-child td, &:last-child th': {
         border: 0,
     },
+    backgroundColor: '#F0FFF0',
 }));
 
 const Vehicles = () => {
