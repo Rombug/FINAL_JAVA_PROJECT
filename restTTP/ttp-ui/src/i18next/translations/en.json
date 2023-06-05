@@ -1,0 +1,10 @@
+{
+  "vehicles": {
+    "owner": "Owner",
+    "registrationCountry": "Registration country",
+    "vehicleModel": "Vehicle model",
+    "registrationNumber": "Registration number",
+    "carNumber": "Car number",
+    "comment": "Comment"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "vehicles": {
+    "owner": "Savininkas",
+    "registrationCountry": "Registracijos šalis",
+    "vehicleModel": "Modelis",
+    "registrationNumber": "Registracijos numeris",
+    "carNumber": "Valstybinis numeris",
+    "comment": "Komentaras"
+  }
+}

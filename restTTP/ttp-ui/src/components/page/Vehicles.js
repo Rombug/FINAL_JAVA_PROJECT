@@ -12,6 +12,7 @@ import {
 } from "@mui/material";
 import {NavLink} from "react-router-dom";
 import DeleteVehicle from "../forms/DeleteVehicle";
+import {useTranslation} from "react-i18next";
 
 
 
@@ -40,6 +41,7 @@ const Vehicles = () => {
 
     const [loading, setLoading] = useState(true);
     const [vehicles, setVehicles] = useState([]);
+    const {t} = useTranslation('vehicles');
 
     useEffect(() => {
         getVehicles()
@@ -62,12 +64,12 @@ const Vehicles = () => {
                         <Table sx={{ minWidth: 700 }} aria-label="customized table">
                             <TableHead>
                                 <TableRow>
-                                    <StyledTableCell>Owner</StyledTableCell>
-                                    <StyledTableCell >Registration Country</StyledTableCell>
-                                    <StyledTableCell >Vehicle Model</StyledTableCell>
-                                    <StyledTableCell >Registration Number</StyledTableCell>
-                                    <StyledTableCell >Car Number</StyledTableCell>
-                                    <StyledTableCell >Comment</StyledTableCell>
+                                    <StyledTableCell>{t('owner')}</StyledTableCell>
+                                    <StyledTableCell >{t('registrationCountry')}</StyledTableCell>
+                                    <StyledTableCell >{t('vehicleModel')}</StyledTableCell>
+                                    <StyledTableCell >{t('registrationNumber')}</StyledTableCell>
+                                    <StyledTableCell >{t('carNumber')}</StyledTableCell>
+                                    <StyledTableCell >{t('comment')}</StyledTableCell>
                                     <StyledTableCell ></StyledTableCell>
                                 </TableRow>
                             </TableHead>
