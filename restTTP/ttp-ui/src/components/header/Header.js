@@ -1,6 +1,9 @@
 import {AppBar, Button, ImageListItem, Toolbar, Typography} from "@mui/material";
 import {NavLink} from "react-router-dom";
 import HeaderItem from "./HeaderItem";
+import LanguageSwitcher from "../swithers/LanguageSwitcher";
+import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
+
 
 const Header = () => {
 
@@ -33,6 +36,7 @@ const Header = () => {
                 <Button href="#" variant="outlined" color="success" sx={{ my: 1, mx: 1.5 }}>
                     Login
                 </Button>
+                <LanguageSwitcher/><LanguageOutlinedIcon color="success" fontSize="large"/>
             </Toolbar>
         </AppBar>
     );
