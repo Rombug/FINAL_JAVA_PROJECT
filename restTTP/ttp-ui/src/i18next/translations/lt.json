@@ -6,5 +6,11 @@
     "registrationNumber": "Registracijos numeris",
     "carNumber": "Valstybinis numeris",
     "comment": "Komentaras"
+  },
+  "header": {
+    "ecv_list": "TTP sąrašas",
+    "register_ecv": "Registruoti TTP",
+    "create_user": "Sukurti vartotoją",
+    "login": "Prisijungti"
   }
 }

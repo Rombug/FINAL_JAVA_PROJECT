@@ -3,9 +3,11 @@ import {NavLink} from "react-router-dom";
 import HeaderItem from "./HeaderItem";
 import LanguageSwitcher from "../swithers/LanguageSwitcher";
 import LanguageOutlinedIcon from "@mui/icons-material/LanguageOutlined";
+import {useTranslation} from "react-i18next";
 
 
 const Header = () => {
+    const {t} = useTranslation('header')
 
     return(
         <AppBar
@@ -29,12 +31,12 @@ const Header = () => {
                     TTP
                 </Typography>
                 <nav>
-                    <HeaderItem path="/" name="ECV list"/>
-                    <HeaderItem path="/transport/registration" name="Register ECV"/>
-                    <HeaderItem path="/users/registration" name="Create user"/>
+                    <HeaderItem path="/" name={t('ecv_list')}/>
+                    <HeaderItem path="/transport/registration" name={t('register_ecv')}/>
+                    <HeaderItem path="/users/registration" name={t('create_user')}/>
                 </nav>
                 <Button href="#" variant="outlined" color="success" sx={{ my: 1, mx: 1.5 }}>
-                    Login
+                    {t('login')}
                 </Button>
                 <LanguageSwitcher/><LanguageOutlinedIcon color="success" fontSize="large"/>
             </Toolbar>

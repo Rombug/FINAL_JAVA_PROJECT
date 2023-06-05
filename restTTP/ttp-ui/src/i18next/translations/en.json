@@ -6,5 +6,11 @@
     "registrationNumber": "Registration number",
     "carNumber": "Car number",
     "comment": "Comment"
+  },
+  "header": {
+    "ecv_list": "ECV list",
+    "register_ecv": "Register ECV",
+    "create_user": "Create user",
+    "login": "Login"
   }
 }
