@@ -71,6 +71,7 @@ const VehicleDetailPage = () => {
                                     to={`/transport/${vehicle.id}/update`}
                                     component={NavLink}
                                     color="success">Edit</Button>
+                            <div style={{ marginRight: '10px' }}></div>
                             <DeleteVehicle vehicleId={vehicle.id}/>
                         </div>
                     </div>
