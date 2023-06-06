@@ -9,4 +9,5 @@ public interface Endpoint {
     String TRANSPORTS = ROOT + "/transport";
     String TRANSPORT = "/{"+ transportId +"}";
     String SEARCH = "/search";
+    String LOGIN = "/login";
 }
