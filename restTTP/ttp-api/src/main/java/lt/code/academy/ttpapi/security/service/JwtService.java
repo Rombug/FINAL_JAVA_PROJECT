@@ -76,7 +76,7 @@ public class JwtService {
     private void validateToken(Claims claims){
         Date expirationDate = claims.getExpiration();
 
-        if (expirationDate.after(new Date())){
+        if (expirationDate.before(new Date())){
             throw new ExpiredTokenException();
         }
     }
