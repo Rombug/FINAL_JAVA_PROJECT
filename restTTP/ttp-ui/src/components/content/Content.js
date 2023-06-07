@@ -4,6 +4,7 @@ import {Route, Routes} from "react-router-dom";
 import User from "../forms/User";
 import Vehicles from "../page/Vehicles";
 import VehicleDetailPage from "../page/VehicleDetailPage";
+import Login from "../forms/Login";
 
 const Content = () => {
 
@@ -22,6 +23,7 @@ const Content = () => {
                 <Route path="/users/registration" element={<User/>}/>
                 <Route path="/transport/:transportId/update" element={<Transport key="update"/>}/>
                 <Route path="/transport/:transportId" element={<VehicleDetailPage/>}/>
+                <Route path="/login" element={<Login/>}/>
             </Routes>
 
         </Container>
