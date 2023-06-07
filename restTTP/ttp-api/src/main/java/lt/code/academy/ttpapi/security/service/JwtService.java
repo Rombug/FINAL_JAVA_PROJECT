@@ -4,6 +4,7 @@ import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Encoders;
 import io.jsonwebtoken.security.Keys;
 import lt.code.academy.ttpapi.security.exception.InvalidTokenException;
+import lt.code.academy.ttpapi.user.dto.Role;
 import lt.code.academy.ttpapi.user.dto.User;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -37,7 +38,7 @@ public class JwtService {
                 .setIssuedAt(date)
                 .setExpiration(new Date(date.getTime() + tokenExpireInMs))
                 .setSubject(user.getUsername())
-                .claim("roles", user.getRoles())
+                .claim("roles", user.getRoles().stream().map(Role::getAuthority).toList())
                 .signWith(Keys.hmacShaKeyFor(secretKey), SignatureAlgorithm.HS512)
                 .compact();
     }
@@ -49,7 +50,7 @@ public class JwtService {
                 .setSigningKey(secretKey)
                 .build();
 
-        Jwt<Header, Claims> headerClaimsJwt = jwtParser.parseClaimsJwt(token);
+        Jws<Claims> headerClaimsJwt = jwtParser.parseClaimsJws(token);
         Claims body = headerClaimsJwt.getBody();
 
         String userName = body.getSubject();
