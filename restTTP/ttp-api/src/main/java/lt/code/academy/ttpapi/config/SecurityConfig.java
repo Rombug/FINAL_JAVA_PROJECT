@@ -1,6 +1,7 @@
 package lt.code.academy.ttpapi.config;
 
 import lt.code.academy.ttpapi.security.filter.JwtAuthenticationFilter;
+import lt.code.academy.ttpapi.security.service.JwtService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpStatus;
@@ -13,7 +14,9 @@ import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 @Configuration
 public class SecurityConfig {
     @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity security, AuthenticationConfiguration authenticationConfiguration) throws Exception {
+    public SecurityFilterChain securityFilterChain(HttpSecurity security,
+                                                   AuthenticationConfiguration authenticationConfiguration,
+                                                   JwtService jwtService) throws Exception {
 
         security
                 .csrf()
@@ -28,7 +31,7 @@ public class SecurityConfig {
                 exceptionHandling()
                     .authenticationEntryPoint(new HttpStatusEntryPoint(HttpStatus.UNAUTHORIZED))
                 .and()
-                    .addFilter(new JwtAuthenticationFilter(authenticationConfiguration.getAuthenticationManager()));
+                    .addFilter(new JwtAuthenticationFilter(authenticationConfiguration.getAuthenticationManager(), jwtService));
 
         return security.build();
     }
