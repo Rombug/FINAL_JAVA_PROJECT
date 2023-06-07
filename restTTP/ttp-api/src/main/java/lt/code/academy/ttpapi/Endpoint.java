@@ -5,8 +5,7 @@ public interface Endpoint {
     String transportId = "transportId";
 
     //path
-    String ROOT = "/api";
-    String TRANSPORTS = ROOT + "/transport";
+    String TRANSPORTS = "/transport";
     String TRANSPORT = "/{"+ transportId +"}";
     String SEARCH = "/search";
     String LOGIN = "/login";
