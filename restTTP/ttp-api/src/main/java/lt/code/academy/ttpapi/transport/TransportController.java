@@ -6,6 +6,7 @@ import lt.code.academy.ttpapi.transport.dto.Transport;
 import lt.code.academy.ttpapi.transport.service.TransportService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,12 +31,14 @@ public class TransportController {
         return transportService.getTransports();
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.CREATED)
     public void createTransport(@RequestBody Transport transport){
         transportService.createTransport(transport);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @PutMapping(value = TRANSPORT, consumes = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.ACCEPTED)
     public void updateTransport(@RequestBody Transport transport, @PathVariable(transportId) UUID id){
@@ -43,6 +46,7 @@ public class TransportController {
         transportService.updateTransport(transport);
     }
 
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping(TRANSPORT)
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deleteTransport(@PathVariable(transportId) UUID id){
