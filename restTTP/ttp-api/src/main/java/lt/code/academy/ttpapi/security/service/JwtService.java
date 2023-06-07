@@ -3,6 +3,7 @@ package lt.code.academy.ttpapi.security.service;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Encoders;
 import io.jsonwebtoken.security.Keys;
+import lt.code.academy.ttpapi.security.exception.ExpiredTokenException;
 import lt.code.academy.ttpapi.security.exception.InvalidTokenException;
 import lt.code.academy.ttpapi.user.dto.Role;
 import lt.code.academy.ttpapi.user.dto.User;
@@ -11,9 +12,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.stereotype.Service;
-
 import javax.crypto.SecretKey;
-import javax.xml.crypto.Data;
 import java.util.Date;
 import java.util.List;
 
@@ -38,33 +37,48 @@ public class JwtService {
                 .setIssuedAt(date)
                 .setExpiration(new Date(date.getTime() + tokenExpireInMs))
                 .setSubject(user.getUsername())
-                .claim("roles", user.getRoles().stream().map(Role::getAuthority).toList())
+                .claim("roles", user
+                        .getRoles()
+                        .stream()
+                        .map(Role::getAuthority)
+                        .toList())
                 .signWith(Keys.hmacShaKeyFor(secretKey), SignatureAlgorithm.HS512)
                 .compact();
     }
 
-    public Authentication parseToken(String token){
+    public Authentication parseToken(String token) {
         try {
 
-        JwtParser jwtParser = Jwts.parserBuilder()
-                .setSigningKey(secretKey)
-                .build();
+            JwtParser jwtParser = Jwts.parserBuilder()
+                    .setSigningKey(secretKey)
+                    .build();
 
-        Jws<Claims> headerClaimsJwt = jwtParser.parseClaimsJws(token);
-        Claims body = headerClaimsJwt.getBody();
+            Jws<Claims> headerClaimsJwt = jwtParser.parseClaimsJws(token);
+            Claims body = headerClaimsJwt.getBody();
 
-        String userName = body.getSubject();
-        List<SimpleGrantedAuthority> roles = ((List<String>)body.get("roles"))
-                .stream()
-                .map(SimpleGrantedAuthority::new)
-                .toList();
+            validateToken(body);
 
-        return new UsernamePasswordAuthenticationToken(userName, null, roles);
+            String userName = body.getSubject();
+            List<SimpleGrantedAuthority> roles = ((List<String>) body.get("roles"))
+                    .stream()
+                    .map(SimpleGrantedAuthority::new)
+                    .toList();
 
-        }catch (Exception e){
+            return new UsernamePasswordAuthenticationToken(userName, null, roles);
+
+        } catch (ExpiredTokenException e){
+            throw e;
+        } catch (Exception e){
             throw new InvalidTokenException();
         }
+    }
 
+    private void validateToken(Claims claims){
+        Date expirationDate = claims.getExpiration();
+
+        if (expirationDate.after(new Date())){
+            throw new ExpiredTokenException();
+        }
     }
 
     private String generateSecretKey(){
