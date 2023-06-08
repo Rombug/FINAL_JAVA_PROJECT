@@ -2,7 +2,7 @@ import {FormControl, FormHelperText, TextField} from "@mui/material";
 import {ErrorMessage, Field} from "formik";
 
 const FormTransportTextInput = ({error, name, label = 'Some label', ...props}) => (
-    <FormControl error={error}>
+    <FormControl error={error} fullWidth>
         <Field id={name}
                name={name}
                as={TextField}

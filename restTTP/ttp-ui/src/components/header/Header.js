@@ -40,7 +40,10 @@ const Header = () => {
                     <HeaderItem path="/transport/registration" name={t('register_ecv')}/>
                     <HeaderItem path="/users/registration" name={t('create_user')}/>
                 </nav>
-                <Button href="#" variant="outlined" color="success" sx={{ my: 1, mx: 1.5 }}>
+                <Button variant="outlined"
+                        color="success"
+                        sx={{ my: 1, mx: 1.5 }}
+                        component={NavLink} to="/login" >
                     {t('login')}
                 </Button>
                 <LanguageSwitcher/><LanguageOutlinedIcon color="success" fontSize="large"/>
