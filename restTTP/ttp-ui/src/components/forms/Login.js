@@ -1,9 +1,23 @@
 import {Form, Formik} from "formik";
 import * as Yup from 'yup';
-import {Avatar, Box, Button, Checkbox, CircularProgress, Container, createTheme, CssBaseline, FormControlLabel, Typography} from "@mui/material";
+import {
+    Alert,
+    Avatar,
+    Box,
+    Button,
+    Checkbox,
+    CircularProgress,
+    Container,
+    createTheme,
+    CssBaseline,
+    FormControlLabel,
+    Typography
+} from "@mui/material";
 import {ThemeProvider} from "@emotion/react";
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import FormTransportTextInput from "./FormTransportTextInput";
+import {login} from "../api/user";
+import {useState} from "react";
 
 const loginValidationSchema = Yup.object().shape(
     {
@@ -16,8 +30,15 @@ const defaultTheme = createTheme();
 
 const Login = () => {
 
+    const [showError, setShowError] = useState(false);
     const onLogin = (values, helpers) => {
-        console.log(values);
+        login(values)
+            .then()
+            .catch((error) => {
+                console.log(error);
+                setShowError(true);
+            })
+            .finally(() => helpers.setSubmitting(false));
     }
 
     return (
@@ -48,7 +69,7 @@ const Login = () => {
                             Sign in
                         </Typography>
                         <Box noValidate sx={ {mt: 1} }>
-
+                            { showError && <Alert severity="error">Failed! Bad username or pasword...</Alert> }
                             <Form>
                                 <FormTransportTextInput
                                     error={props.touched.username && !!props.errors.username}
