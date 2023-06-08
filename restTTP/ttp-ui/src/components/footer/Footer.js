@@ -1,13 +1,11 @@
-import {Box, Container, Link, Typography} from "@mui/material";
+import {Box, Container, Typography} from "@mui/material";
 
 function Copyright(props) {
     return (
-        <Typography variant="body2" color="text.secondary" align="center" {...props}>
+        <Typography variant="body2" color="text.secondary" align="left" {...props}>
             {'Copyright © '}
-            <Link color="inherit" href="https://mui.com/">
-                Your Website
-            </Link>{' '}
-            {new Date().getFullYear()}
+            Code Academy
+            {' '}{new Date().getFullYear()}
             {'.'}
         </Typography>
     );
@@ -23,15 +21,14 @@ const Footer = () => {
                 py: 3,
                 px: 2,
                 mt: 'auto',
-                backgroundColor: (theme) =>
-                    theme.palette.mode === 'light'
-                        ? theme.palette.grey[200]
-                        : theme.palette.grey[800],
+                backgroundColor: '#CCFFCC',
+                color: 'black',
+                borderTop: '1px solid black'
             }}
         >
-            <Container maxWidth="sm">
-                <Typography variant="body1" align="center">
-                    My sticky footer can be found here.
+            <Container maxWidth="lx">
+                <Typography variant="body1" align="left">
+                    Spring Boot & React App
                 </Typography>
                 <Copyright />
             </Container>

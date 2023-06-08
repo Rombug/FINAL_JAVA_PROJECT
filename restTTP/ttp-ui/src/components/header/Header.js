@@ -14,7 +14,12 @@ const Header = () => {
             position="static"
             color="default"
             elevation={0}
-            sx={{ borderBottom: (theme) => `1px solid ${theme.palette.divider}` }}
+            sx={{
+                mt: 'auto',
+                backgroundColor: '#CCFFCC',
+                color: 'black',
+                borderBottom: '1px solid black'
+            }}
         >
             <Toolbar sx={{ flexWrap: 'wrap' }}>
                 <div style={{ display: 'flex', alignItems: 'center' }}>
