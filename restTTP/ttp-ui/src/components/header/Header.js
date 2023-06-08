@@ -16,7 +16,7 @@ const Header = () => {
             elevation={0}
             sx={{
                 mt: 'auto',
-                backgroundColor: '#CCFFCC',
+                backgroundColor: '#F0FFF0',
                 color: 'black',
                 borderBottom: '1px solid black'
             }}
@@ -41,7 +41,7 @@ const Header = () => {
                         <img
                             src="https://sports.cbsimg.net/fly/images/nfl/logos/team/414.svg"
                             alt=""
-                            style={{ width: '50px', height: 'auto' }}
+                            style={{ width: '35px', height: 'auto' }}
                         />
                     </ImageListItem>
                     TTP

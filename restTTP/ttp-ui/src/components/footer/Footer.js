@@ -21,7 +21,7 @@ const Footer = () => {
                 py: 3,
                 px: 2,
                 mt: 'auto',
-                backgroundColor: '#CCFFCC',
+                backgroundColor: '#F0FFF0',
                 color: 'black',
                 borderTop: '1px solid black'
             }}
