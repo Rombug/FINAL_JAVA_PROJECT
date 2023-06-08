@@ -22,17 +22,28 @@ const Header = () => {
             }}
         >
             <Toolbar sx={{ flexWrap: 'wrap' }}>
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                    <ImageListItem>
-                        <img src="https://sports.cbsimg.net/fly/images/nfl/logos/team/414.svg" alt="" style={{ width: '50px', height: 'auto' }} />
+
+                <Typography
+                    variant="h6"
+                    color="inherit"
+                    noWrap
+                    component={NavLink}
+                    to="/"
+                    sx={{
+                        flexGrow: 1,
+                        textDecoration: 'unset',
+                        display: 'flex',
+                        alignItems: 'center',
+                        justifyContent: 'left',
+                    }}
+                >
+                    <ImageListItem sx={{ marginRight: '10px' }}>
+                        <img
+                            src="https://sports.cbsimg.net/fly/images/nfl/logos/team/414.svg"
+                            alt=""
+                            style={{ width: '50px', height: 'auto' }}
+                        />
                     </ImageListItem>
-                </div>
-                <Typography variant="h6"
-                            color="inherit"
-                            noWrap
-                            component={NavLink}
-                            to="/"
-                            sx={{ flexGrow: 1, textDecoration: 'unset', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     TTP
                 </Typography>
                 <nav>
