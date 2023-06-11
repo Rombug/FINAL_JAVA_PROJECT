@@ -69,8 +69,9 @@ const Header = () => {
                     </Typography>
                     <nav>
                         <HeaderItem path="/" name={t('ecv_list')}/>
-                        <HeaderItem path="/transport/registration" name={t('register_ecv')}/>
-                        <HeaderItem path="/users/registration" name={t('create_user')}/>
+                        {user && <HeaderItem path="/transport/registration" name={t('register_ecv')}/>}
+                        {user && <HeaderItem path="/users/registration" name={t('create_user')}/>}
+
                     </nav>
                     {
                         user ?

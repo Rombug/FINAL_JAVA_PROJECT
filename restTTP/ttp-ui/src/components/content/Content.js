@@ -5,6 +5,7 @@ import User from "../forms/User";
 import Vehicles from "../page/Vehicles";
 import VehicleDetailPage from "../page/VehicleDetailPage";
 import Login from "../forms/Login";
+import SecuredRoute from "../security/SecuredRoute";
 
 const Content = () => {
 
@@ -19,10 +20,18 @@ const Content = () => {
 
             <Routes>
                 <Route path="/" element={<Vehicles/>}/>
-                <Route path="/transport/registration" element={<Transport key="registration"/>}/>
-                <Route path="/users/registration" element={<User/>}/>
-                <Route path="/transport/:transportId/update" element={<Transport key="update"/>}/>
                 <Route path="/transport/:transportId" element={<VehicleDetailPage/>}/>
+                <Route path="/users/registration" element={<User/>}/>
+
+                <Route path="/transport/registration" element={<SecuredRoute/>}>
+                    <Route path="/transport/registration" element={<Transport key="registration"/>}/>
+                </Route>
+
+                <Route path="/transport/:transportId/update" element={ <SecuredRoute/> }>
+                    <Route path="/transport/:transportId/update" element={<Transport key="update"/>}/>
+                </Route>
+
+
                 <Route path="/login" element={<Login/>}/>
             </Routes>
 
