@@ -18,6 +18,9 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import FormTransportTextInput from "./FormTransportTextInput";
 import {login} from "../api/user";
 import {useState} from "react";
+import {useDispatch} from "react-redux";
+import {addUser} from "../../store/slices/userSlice";
+import {useNavigate} from "react-router-dom";
 
 const loginValidationSchema = Yup.object().shape(
     {
@@ -31,9 +34,19 @@ const defaultTheme = createTheme();
 const Login = () => {
 
     const [showError, setShowError] = useState(false);
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
     const onLogin = (values, helpers) => {
         login(values)
-            .then(({data}) => console.log('data', data))
+            .then(({data, headers}) => {
+                dispatch(addUser({
+                    user: data,
+                    jwtToken: headers.authorization
+                }));
+                navigate('/');
+            console.log('data', data);
+            console.log('headers', headers.authorization);
+            })
             .catch((error) => {
                 console.log(error);
                 setShowError(true);
