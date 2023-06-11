@@ -33,7 +33,7 @@ const Login = () => {
     const [showError, setShowError] = useState(false);
     const onLogin = (values, helpers) => {
         login(values)
-            .then()
+            .then(({data}) => console.log('data', data))
             .catch((error) => {
                 console.log(error);
                 setShowError(true);
