@@ -45,10 +45,10 @@ public class SecurityConfig {
         return security.build();
     }
 
-    @Bean
-    public WebSecurityCustomizer webSecurityCustomizer(){
-        return web -> web
-                .ignoring()
-                .requestMatchers(PathRequest.toH2Console());
-    }
+//    @Bean
+//    public WebSecurityCustomizer webSecurityCustomizer(){
+//        return web -> web
+//                .ignoring()
+//                .requestMatchers(PathRequest.toH2Console());
+//    }
 }
