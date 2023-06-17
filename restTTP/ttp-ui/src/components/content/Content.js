@@ -25,7 +25,10 @@ const Content = () => {
             <Routes>
                 <Route path="/" element={<Vehicles/>}/>
                 <Route path="/transport/:transportId" element={<VehicleDetailPage/>}/>
-                <Route path="/users/registration" element={<User/>}/>
+
+                <Route path="/users/registration" element={<SecuredRoute roles={['ADMIN']}/>}>
+                    <Route path="/users/registration" element={<User/>}/>
+                </Route>
 
                 <Route path="/transport/registration" element={<SecuredRoute/>}>
                     <Route path="/transport/registration" element={<Transport key="registration"/>}/>
