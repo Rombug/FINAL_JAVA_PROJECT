@@ -1,6 +1,6 @@
 import {configureStore} from "@reduxjs/toolkit";
 import {logger} from "redux-logger/src";
-import user from './slices/userSlice';
+import user, {getUserFromLocalStorage} from './slices/userSlice';
 
 const createNewStore = () => {
     return configureStore(
@@ -9,7 +9,10 @@ const createNewStore = () => {
             reducer: {
                 user
             },
-            middleware: getDefaultMiddleware => getDefaultMiddleware().concat(logger)
+            middleware: getDefaultMiddleware => getDefaultMiddleware().concat(logger),
+            preloadedState :{
+                user: getUserFromLocalStorage()
+            }
         }
     )
    // );
