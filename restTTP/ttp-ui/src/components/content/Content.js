@@ -15,7 +15,11 @@ const Content = () => {
             display: 'flex',
             flexDirection: 'column',
             minHeight: 'calc(100vh - 157px)',
-            mt:3
+            mt:3,
+            background: `url('https://previews.123rf.com/images/mino21/mino211401/mino21140100036/26043819-line-art-of-a-truck-with-trailer.jpg')`,
+            backgroundSize: '40%',
+            backgroundRepeat: 'no-repeat',
+            backgroundPosition: 'center bottom',
         }}>
 
             <Routes>
