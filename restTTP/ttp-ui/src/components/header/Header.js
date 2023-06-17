@@ -70,7 +70,7 @@ const Header = () => {
                     <nav>
                         <HeaderItem path="/" name={t('ecv_list')}/>
                         {user && <HeaderItem path="/transport/registration" name={t('register_ecv')}/>}
-                        {user && <HeaderItem path="/users/registration" name={t('create_user')}/>}
+                        {user?.roles.includes('ADMIN') && <HeaderItem path="/users/registration" name={t('create_user')}/>}
 
                     </nav>
                     {

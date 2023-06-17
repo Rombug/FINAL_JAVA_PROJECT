@@ -3,12 +3,14 @@ import React, {useEffect, useState} from "react";
 import {getVehicleById} from "../api/transportApi";
 import {Button, CircularProgress, Grid, Paper, Typography} from "@mui/material";
 import DeleteVehicle from "../forms/DeleteVehicle";
+import {useSelector} from "react-redux";
 
 
 const VehicleDetailPage = () => {
     const {transportId} = useParams();
     const [loading, setLoading] = useState(true);
     const [vehicle, setVehicle] = useState({});
+    const user = useSelector(store => store.user.user);
 
     useEffect(() => {
         getVehicleById(transportId)
@@ -72,7 +74,9 @@ const VehicleDetailPage = () => {
                                     component={NavLink}
                                     color="success">Edit</Button>
                             <div style={{ marginRight: '10px' }}></div>
-                            <DeleteVehicle vehicleId={vehicle.id}/>
+                            {
+                                user?.roles.includes('ADMIN') && <DeleteVehicle vehicleId={vehicle.id}/>
+                            }
                         </div>
                     </div>
             }

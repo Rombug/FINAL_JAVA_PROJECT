@@ -13,6 +13,7 @@ import {
 import {NavLink} from "react-router-dom";
 import DeleteVehicle from "../forms/DeleteVehicle";
 import {useTranslation} from "react-i18next";
+import {useSelector} from "react-redux";
 
 
 
@@ -42,6 +43,7 @@ const Vehicles = () => {
     const [loading, setLoading] = useState(true);
     const [vehicles, setVehicles] = useState([]);
     const {t} = useTranslation('vehicles');
+    const user = useSelector(store => store.user.user);
 
     useEffect(() => {
         getVehicles()
@@ -127,7 +129,11 @@ const Vehicles = () => {
                                             overflow: 'hidden',
                                             textOverflow: 'ellipsis',
                                             whiteSpace: 'nowrap'}}>
-                                            <DeleteVehicle key={vehicle.id} vehicleId={vehicle.id} removeVehicleFromTable={removeVehicleFromTable}/>
+                                            {
+                                                user?.roles.includes('ADMIN') && <DeleteVehicle key={vehicle.id}
+                                                                                                vehicleId={vehicle.id}
+                                                                                                removeVehicleFromTable={removeVehicleFromTable}/>
+                                            }
                                         </StyledTableCell>
 
                                     </StyledTableRow>
