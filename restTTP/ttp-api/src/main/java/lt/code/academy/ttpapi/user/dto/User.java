@@ -37,7 +37,7 @@ public class User implements UserDetails
     private String email;
     private Set<Role> roles;
     @NotBlank
-    @Size(min = 10)
+    @Size(min = 5)
     private String password;
     @NotBlank
     private String repeatPassword;

@@ -12,5 +12,10 @@
     "register_ecv": "Registruoti TTP",
     "create_user": "Sukurti vartotoją",
     "login": "Prisijungti"
+  },
+  "user": {
+    "username": {
+      "exist": "Toks vartotojo vardaus jau yra !!!"
+    }
   }
 }

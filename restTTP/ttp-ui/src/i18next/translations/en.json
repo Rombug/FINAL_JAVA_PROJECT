@@ -12,5 +12,10 @@
     "register_ecv": "Register ECV",
     "create_user": "Create user",
     "login": "Login"
+  },
+  "user": {
+    "username": {
+      "exist": "This username already exist!!!"
+    }
   }
 }

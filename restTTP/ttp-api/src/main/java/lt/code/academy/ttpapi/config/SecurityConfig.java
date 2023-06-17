@@ -33,6 +33,8 @@ public class SecurityConfig {
                     .authorizeHttpRequests()
                         .requestMatchers(HttpMethod.GET, "/transport", "/transport/**")
                             .permitAll()
+                        .requestMatchers(HttpMethod.POST, "/users")
+                            .permitAll()
                         .anyRequest()
                         .authenticated()
                 .and().
